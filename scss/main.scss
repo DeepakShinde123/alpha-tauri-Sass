@@ -1,12 +1,17 @@
+@use "variables" as H; //partials
+@import url(./resets.scss); //regular import
 
-@use "variables" as H;
-@import url(./resets.scss);
+
+//Mixin
+@mixin gradients ($deg: 100deg) {
+  background: linear-gradient($deg,
+      H.$color-peach,
+      H.$color-voilet);
+}
 
 body {
   font-family: "Teachers", sans-serif;
-  background: linear-gradient(106.5deg,
-      H.$color-peach,
-     H.$color-voilet);
+  @include gradients();
 
   animation: {
     name: golgol;
@@ -15,60 +20,53 @@ body {
     timing-function: ease;
   }
 }
-  ::selection {
-    background: H.$color-red;
-    color: white;
+
+::selection {
+  background: H.$color-red;
+  color: white;
+}
+
+@keyframes golgol {
+  0% {
+    @include gradients(20deg);
   }
 
-  @keyframes golgol {
-    0% {
-      background: linear-gradient(20deg,
-         H.$color-peach,
-          H.$color-voilet);
-    }
-
-    25% {
-      background: linear-gradient(80deg,
-         H.$color-peach,
-          H.$color-voilet);
-    }
-
-    50% {
-      background: linear-gradient(120deg,
-         H.$color-peach,
-         H.$color-voilet);
-    }
-
-    100% {
-      background: linear-gradient(160deg,
-         H.$color-peach,
-          H.$color-voilet);
-    }
+  25% {
+    @include gradients(80deg);
   }
 
-  .container {
-    height: 100vh;
-    width: 100vw;
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 25% 55% 20%;
+  50% {
+    @include gradients(120deg);
   }
 
-  header,
-  main,
-  footer,
-  aside {
-    padding: 2vw;
+  100% {
+    @include gradients(160deg);
   }
+}
 
-  /* 
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 25% 55% 20%;
+}
+
+header,
+main,
+footer,
+aside {
+  padding: 2vw;
+}
+
+/* 
   MARK:Header 
   */
-  header {
-    display: flex;
-    justify-content: space-between;
+header {
+  display: flex;
+  justify-content: space-between;
 
-    
+
   .logo {
     height: 20px;
     width: 20px;
@@ -81,80 +79,81 @@ body {
       transform: rotate(90deg);
       border-radius: 6px;
     }
-  
-  }
-  }
 
-  header ul {
-    list-style: none;
-    text-align: right;
-    color: red;
-    cursor: pointer;
-
-    li:first-child {
-      font-weight: 600;
-      margin-bottom: 25px;
-      color: black;
-      font-size: 20px;
-    }
   }
+}
 
-  /* 
+header ul {
+  list-style: none;
+  text-align: right;
+  color: red;
+  cursor: pointer;
+
+  li:first-child {
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: black;
+    font-size: 20px;
+  }
+}
+
+/* 
   MARK:Main 
   */
 
-  main{
-    h1 {
-      font-size: 70px;
-      font-weight: 400;
-      line-height: 1;
-      letter-spacing: 10px;
-    }
+main {
+  h1 {
+    font-size: 70px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 10px;
   }
+}
 
-  /* Footer */
-  footer {
-    align-self: center;
+/* Footer */
+footer {
+  align-self: center;
 
-    p {
-      font-size: 12px;
-      width: 80%;
-    }
+  p {
+    font-size: 12px;
+    width: 80%;
   }
+}
 
-  /* ASIDE */
-  aside {
-    grid-column: 2;
-    grid-row: 1 / -1;
-    padding-right: 10vw;
+/* ASIDE */
+aside {
+  grid-column: 2;
+  grid-row: 1 / -1;
+  padding-right: 10vw;
 
-    video {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-    }
+  video {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
   }
+}
 
-  /* 
+/* 
     MARK: Responsive
 */
-  @media screen and (max-width: 680px) {
-    .container {
-      grid-template-columns: 100%;
-      grid-template-rows: 25% 30% 15% 30%;
-    }
-
-    h1 {
-      font-size: 50px;
-      font-weight: 500;
-    }
-    footer p {
-      width: 100%;
-    }
-
-    aside {
-      grid-row: 4;
-      grid-column: 1;
-      padding: 0;
-    }
+@media screen and (max-width: 680px) {
+  .container {
+    grid-template-columns: 100%;
+    grid-template-rows: 25% 30% 15% 30%;
   }
+
+  h1 {
+    font-size: 50px;
+    font-weight: 500;
+  }
+
+  footer p {
+    width: 100%;
+  }
+
+  aside {
+    grid-row: 4;
+    grid-column: 1;
+    padding: 0;
+  }
+}
